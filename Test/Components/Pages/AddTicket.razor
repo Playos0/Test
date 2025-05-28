@@ -1,0 +1,38 @@
+@page "/add"
+
+<h3>Dodaj zg³oszenie serwisowe</h3>
+<!-- Formularz -->
+<EditForm Model="@ticket" OnValidSubmit="HandleValidSubmit">
+
+	<div>
+		<label>Imie klienta:  </label> <br />
+		<InputText @bind-Value="ticket.ClientName"/>
+	</div>
+	<div>
+		<label>Nazwa urz¹dzenia:  </label> <br />
+		<InputText @bind-Value="ticket.Device" />
+	</div>
+	<div>
+		<label>Opis zg³oszenia:  </label> <br />
+		<InputTextArea @bind-Value="ticket.Description" />
+	</div>
+	<button type="submit">Dodaj zg³oszenie</button>
+</EditForm>
+
+@if (isSubmitted)
+{
+	<div class="alert alert-success mt-3">
+		Zg³oszenie zosta³o dodane pomyœlnie!
+	</div>
+}
+@code{
+	private Ticket ticket = new Ticket();
+	private bool isSubmitted = false;
+
+	private void HandleValidSubmit()
+	{
+		// Logika dodawania zg³oszenia serwisowego
+		isSubmitted = true;
+		ticket = new Ticket(); // Resetowanie formularza po dodaniu zg³oszenia
+	}
+}
