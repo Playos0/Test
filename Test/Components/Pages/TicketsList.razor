@@ -31,8 +31,8 @@ else
 }
 
 @code {
-	private List<Ticket> tickets = new();
-	protected override void OnInitialized()
+	private List<Ticket> tickets = new List<Ticket>(); // Lista zgłoszeń serwisowych
+	protected override void OnInitialized() // Metoda wywoływana podczas inicjalizacji
 	{
 		// Inicjalizacja listy zgłoszeń serwisowych
 		tickets = TicketService.GetTickets(); // Pobieramy zgłoszenia z TicketService
