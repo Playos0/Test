@@ -1,0 +1,40 @@
+﻿@page "/Tickets"
+
+<h3>Zgłoszenia serwisowe</h3>
+
+<!-- Lista zgłoszeń serwisowych -->
+@if (tickets != null && tickets.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Imię klienta</th>
+				<th>Nazwa urządzenia</th>
+				<th>Opis zgłoszenia</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var ticket in tickets)
+			{
+				<tr>
+					<td>@ticket.ClientName</td>
+					<td>@ticket.Device</td>
+					<td>@ticket.Description</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>Brak zgłoszeń serwisowych.</p>
+}
+
+@code {
+	private List<Ticket> tickets = new();
+	protected override void OnInitialized()
+	{
+		// Inicjalizacja listy zgłoszeń serwisowych
+		tickets = TicketService.GetTickets(); // Pobieramy zgłoszenia z TicketService
+	}
+}

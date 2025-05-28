@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Test.Components.Data
+﻿//klasa obsługi zgłoszeń
+public static class TicketService
 {
-    internal class Class1
+    // Lista przechowująca zgłoszenia
+    private static List<Ticket> tickets = new List<Ticket>();
+
+    // Metoda do dodawania zgłoszenia
+    public static void AddTicket(Ticket ticket)
     {
+        tickets.Add(ticket);
+    }
+    // Metoda do pozyskania isty zgłoszeń
+    public static List<Ticket> GetTickets()
+    {
+        return tickets;
     }
 }

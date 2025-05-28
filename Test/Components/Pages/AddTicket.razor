@@ -25,6 +25,7 @@
 		Zg³oszenie zosta³o dodane pomyœlnie!
 	</div>
 }
+
 @code{
 	private Ticket ticket = new Ticket();
 	private bool isSubmitted = false;
@@ -34,5 +35,6 @@
 		// Logika dodawania zg³oszenia serwisowego
 		isSubmitted = true;
 		ticket = new Ticket(); // Resetowanie formularza po dodaniu zg³oszenia
+		TicketService.AddTicket(ticket); //Dodajemy zg³oszenie do Listy zg³oszeñ w TicketService class
 	}
 }
