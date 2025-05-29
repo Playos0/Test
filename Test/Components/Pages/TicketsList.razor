@@ -25,7 +25,8 @@
 					<td>
 						<!-- Możliwość dodania przycisku do edycji lub usunięcia zgłoszenia -->
 						<button class="btn btn-primary" @onclick='() => ChangeStatus(ticket,"W trakcie")'>W trakcie</button>
-						<button class="btn btn-danger" @onclick='() => ChangeStatus(ticket,"Zakończone")'>Zakończone</button>
+						<button class="btn btn-success" @onclick='() => ChangeStatus(ticket,"Zakończone")'>Zakończone</button>
+						<button class="btn btn-danger" @onclick='() => DeleteTicket(ticket)'>Usuń</button>
 					</td>
 				</tr>
 			}
@@ -47,7 +48,12 @@ else
 	private void ChangeStatus(Ticket ticket, string status)
 	{
 		ticket.Status = status; // Zmiana statusu zgłoszenia
-		StateHasChanged(); // Odświeżenie komponentu, aby zmiany były widoczne
+		StateHasChanged(); // Odświeżenie, aby zmiany były widoczne
 	}
-
+	private void DeleteTicket(Ticket ticket)
+	{
+		TicketService.DeleteTicket(ticket); // Usunięcie zgłoszenia z TicketService
+		tickets.Remove(ticket); // Usunięcie zgłoszenia z listy
+		StateHasChanged(); // Odświeżenie, aby zmiany były widoczne
+	}
 }

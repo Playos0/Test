@@ -9,9 +9,17 @@ public static class TicketService
     {
         tickets.Add(ticket);
     }
+
     // Metoda do pozyskania isty zgłoszeń
     public static List<Ticket> GetTickets()
     {
         return tickets;
     }
+
+    // Metoda do usuwania zgłoszenia
+    public static void DeleteTicket(Ticket ticket)
+    {
+        tickets.Remove(ticket);
+    }
+
 }
