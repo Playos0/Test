@@ -3,7 +3,8 @@
 <h3>Dodaj zg³oszenie serwisowe</h3>
 <!-- Formularz -->
 <EditForm Model="@ticket" OnValidSubmit="HandleValidSubmit">
-
+	<DataAnnotationsValidator />
+	<ValidationSummary />
 	<div>
 		<label>Imie klienta:  </label> <br />
 		<InputText @bind-Value="ticket.ClientName"/>
@@ -32,9 +33,10 @@
 
 	private void HandleValidSubmit()
 	{
+		TicketService.AddTicket(ticket); //Dodajemy zg³oszenie do Listy zg³oszeñ w TicketService class
 		// Logika dodawania zg³oszenia serwisowego
 		isSubmitted = true;
 		ticket = new Ticket(); // Resetowanie formularza po dodaniu zg³oszenia
-		TicketService.AddTicket(ticket); //Dodajemy zg³oszenie do Listy zg³oszeñ w TicketService class
+		
 	}
 }
