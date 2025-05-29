@@ -1,4 +1,5 @@
 ﻿@page "/Tickets"
+<ConfirmWindow @ref="confirmWindow" Message="Czy na pewno chcesz usunąć to zgłoszenie?" OnConfirm="OnConfirm" />
 
 <h3>Zgłoszenia serwisowe</h3>
 
@@ -26,7 +27,7 @@
 						<!-- Możliwość dodania przycisku do edycji lub usunięcia zgłoszenia -->
 						<button class="btn btn-primary" @onclick='() => ChangeStatus(ticket,"W trakcie")'>W trakcie</button>
 						<button class="btn btn-success" @onclick='() => ChangeStatus(ticket,"Zakończone")'>Zakończone</button>
-						<button class="btn btn-danger" @onclick='() => DeleteTicket(ticket)'>Usuń</button>
+						<button class="btn btn-danger" @onclick='() => AskDeleteTicket(ticket)'>Usuń</button>
 					</td>
 				</tr>
 			}
@@ -50,10 +51,31 @@ else
 		ticket.Status = status; // Zmiana statusu zgłoszenia
 		StateHasChanged(); // Odświeżenie, aby zmiany były widoczne
 	}
+	// Metoda wywoływana po potwierdzeniu usunięcia zgłoszenia
+	private ConfirmWindow? confirmWindow;
+	private Ticket? ticketToDelete;
+	private void AskDeleteTicket(Ticket ticket)
+	{
+		ticketToDelete = ticket; // Zapamiętanie zgłoszenia do usunięcia
+		confirmWindow?.ShowConfirmWindow(); // Wyświetlenie okna potwierdzenia
+	}
+
+	private void OnConfirm(bool confirmed)
+	{
+		if (confirmed && ticketToDelete != null)
+		{
+			DeleteTicket(ticketToDelete); // Usunięcie zgłoszenia, jeśli potwierdzono
+			ticketToDelete = null; // Resetowanie zgłoszenia do usunięcia
+			StateHasChanged(); // Odświeżenie, aby zmiany były widoczne
+		}
+	}
+
 	private void DeleteTicket(Ticket ticket)
 	{
 		TicketService.DeleteTicket(ticket); // Usunięcie zgłoszenia z TicketService
 		tickets.Remove(ticket); // Usunięcie zgłoszenia z listy
 		StateHasChanged(); // Odświeżenie, aby zmiany były widoczne
 	}
+
+
 }
