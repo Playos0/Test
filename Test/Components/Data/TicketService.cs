@@ -29,13 +29,11 @@ public static class TicketService
         SaveTicketsToFile(); // Zapisanie zgłoszeń do pliku po usunięciu zgłoszenia
     }
 
-
     // Metoda do pozyskania isty zgłoszeń
     public static List<Ticket> GetTickets()
     {
         return tickets;
     }
-
 
     // Metoda do zapisywania zgłoszeń do pliku JSON
     private static readonly string filePath = "tickets.json";
