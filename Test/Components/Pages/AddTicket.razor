@@ -17,7 +17,12 @@
 		<label>Opis zg³oszenia:  </label> <br />
 		<InputTextArea @bind-Value="ticket.Description" />
 	</div>
+	<div>
+		<label>Plik do dodania: </label> <br />
+		<InputFile OnChange="OnInputFileChange" multiple />
+	</div>
 	<button type="submit">Dodaj zg³oszenie</button>
+
 </EditForm>
 
 @if (isSubmitted)
@@ -28,6 +33,7 @@
 }
 
 @code{
+
 	private Ticket ticket = new Ticket();
 	private bool isSubmitted = false;
 
@@ -37,6 +43,26 @@
 		// Logika dodawania zg³oszenia serwisowego
 		isSubmitted = true;
 		ticket = new Ticket(); // Resetowanie formularza po dodaniu zg³oszenia
-		
+
 	}
+
+	// Metoda obs³uguj¹ca zmianê pliku
+	private async Task OnInputFileChange(InputFileChangeEventArgs e)
+	{
+		var files = e.GetMultipleFiles(); // Pobieramy wiele plików
+		foreach (var file in files) // Iterujemy przez ka¿dy plik
+		{
+			var buffer = new byte[file.Size]; // Tworzymy bufor o rozmiarze pliku
+			await file.OpenReadStream().ReadAsync(buffer); // Odczytujemy plik do bufora
+
+			ticket.Attachments.Add(new Attachment
+			{
+					FileName = file.Name,
+					ContentType = file.ContentType,
+					Data = buffer // Przechowujemy dane pliku w obiekcie Attachment
+			});
+		}
+	}
+
+
 }
