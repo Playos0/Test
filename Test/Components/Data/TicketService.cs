@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using System.IO;
 using System.Runtime.CompilerServices;
+using Microsoft.VisualBasic.FileIO;
 
 
 //klasa obsługi zgłoszeń
@@ -28,6 +29,15 @@ public static class TicketService
         tickets.Remove(ticket);
         SaveTicketsToFile(); // Zapisanie zgłoszeń do pliku po usunięciu zgłoszenia
     }
+
+    /* POZA UŻYCIEM, MOŻE SIĘ PRZYDA
+    //Metoda do usuwania załączników
+    public static void DeleteTicketsAttachment(Ticket ticket, Attachment attachment)
+    {
+        ticket.Attachments.Remove(attachment);
+        SaveTicketsToFile();
+    }
+    */
 
     // Metoda do pozyskania isty zgłoszeń
     public static List<Ticket> GetTickets()
