@@ -12,19 +12,31 @@
 				<th>Imię klienta</th>
 				<th>Nazwa urządzenia</th>
 				<th>Opis zgłoszenia</th>
+				<th>Data dodania</th>
 				<th>Status</th>
-				<th>Data dodania</th>	
+					
 			</tr>
 		</thead>
 		<tbody>
+			<label>Sortuj według:</label>
+			<select @onchange = "SortChanged">
+				<option value="client">Imię klienta</option>
+				<option value="device">Nazwa urządzenia</option>
+				<option value="createdAt">Data dodania</option>
+				<option value="status">Status</option>
+			</select>
+			<button @onclick = "ToggleSortDirection">
+				@(ascending ? "⬆️ Rosnąco" : "⬇️ Malejąco")
+			</button>
+
 			@foreach (var ticket in tickets)
 			{
 				<tr>
 					<td>@ticket.ClientName</td>
 					<td>@ticket.Device</td>
 					<td>@ticket.Description</td>
-					<td>@ticket.Status</td>
 					<td>@ticket.CreatedAt</td>
+					<td>@ticket.Status</td>
 					<td>
 						<!-- Możliwość dodania przycisku do edycji lub usunięcia zgłoszenia -->
 						<button class="btn btn-primary" @onclick='() => ChangeStatus(ticket,"W trakcie")'>W trakcie</button>
@@ -47,6 +59,7 @@ else
 	{
 		// Inicjalizacja listy zgłoszeń serwisowych
 		tickets = TicketService.GetTickets(); // Pobieramy zgłoszenia z TicketService
+		SortTickets(); // Sortujemy zgłoszenia po inicjalizacji
 	}
 	private void ChangeStatus(Ticket ticket, string status)
 	{
@@ -79,5 +92,35 @@ else
 		StateHasChanged(); // Odświeżenie, aby zmiany były widoczne
 	}
 
+	// Metoda obsługująca zmianę sortowania---------------------
+	private string currentSort = "client"; // Domyślne sortowanie według imienia klienta
+
+	private void SortChanged(ChangeEventArgs e) // Metoda wywoływana przy zmianie sortowania
+	{
+		currentSort = e.Value.ToString() ?? "client"; // Aktualizacja bieżącego sortowania
+		SortTickets(); // Wywołanie metody sortującej
+	}
+
+	//Metoda do zmiiany sortowania (ASC, DESC)
+	private bool ascending = true; //Domyślna definicja sortowania jako rosnąco
+
+	private void ToggleSortDirection()
+	{
+		ascending = !ascending;
+		SortTickets();
+	}
+
+	private void SortTickets() // Metoda sortująca zgłoszenia
+	{
+		tickets = currentSort switch
+		{
+			"client" => ascending ? tickets.OrderBy(t => t.ClientName).ToList() : tickets.OrderByDescending(t => t.ClientName).ToList(),
+			"device" => ascending ? tickets.OrderBy(t => t.Device).ToList() : tickets.OrderByDescending(t => t.Device).ToList(),
+			"createdAt" => ascending ? tickets.OrderBy(t => t.CreatedAt).ToList() : tickets.OrderByDescending(t => t.CreatedAt).ToList(),
+			"status" => ascending ? tickets.OrderBy(t => t.Status).ToList() : tickets.OrderByDescending(t => t.Status).ToList(),
+			_ => tickets // Domyślne sortowanie, jeśli nie pasuje do żadnej opcji
+		};
+		StateHasChanged(); // Odświeżenie, aby zmiany były widoczne
+	}
 
 }
