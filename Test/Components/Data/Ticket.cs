@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 public class Ticket
 {
+    public int Id { get; set; } // Identyfikator zgłoszenia
     [Required(ErrorMessage = "Imię klienta jest wymagane!")]
     public string ClientName { get; set; } = string.Empty;
 

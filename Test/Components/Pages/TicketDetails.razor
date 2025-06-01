@@ -1,0 +1,56 @@
+﻿@page "/ticket/{TickedId:int}"
+@inject NavigationManager Navigation 
+
+<h3>Szczegóły zgłoszenia</h3>
+
+@if (ticket == null)
+{
+	<p>Ładowanie zgłoszenia...</p>
+}
+else
+{
+	<div class="ticket-details">
+		<p><strong>Imię klienta:</strong> @ticket.ClientName</p>
+		<p><strong>Nazwa urządzenia:</strong> @ticket.Device</p>
+		<p><strong>Opis zgłoszenia:</strong> @ticket.Description</p>
+		<p><strong>Data dodania:</strong> @ticket.CreatedAt.ToString("g")</p>
+		<p><strong>Status:</strong> @ticket.Status</p>
+		@if (ticket.Attachments.Any())
+		{
+			<h4>Załączniki:</h4>
+			<ul>
+				@foreach (var attachment in ticket.Attachments)
+				{
+				/*	<li>
+						@attachment.FileName
+						 <button class="btn btn-link" @onclick='() => DownloadAttachment(attachment)'>Pobierz</button>
+					/</li> do zrobienia, żeby działało */
+				}
+			</ul>
+		}else
+		{
+			<p>Brak załączników.</p>
+		}
+		
+		<button class="btn btn-secondary" @onclick="GoBack">Wróć do listy zgłoszeń</button>
+	</div>
+}
+@code{
+
+	[Parameter] public int TicketId { get; set; } // Id zgłoszenia przekazywane z URL
+	private Ticket? ticket; // Zgłoszenie serwisowe
+
+
+	protected override void OnInitialized() // Metoda wywoływana podczas inicjalizacji
+	{
+		ticket = TicketService.GetTicketById(TicketId); // Pobieramy zgłoszenie serwisowe na podstawie Id
+	}
+
+	void GoBack() // Metoda do powrotu do listy zgłoszeń
+	{
+		Navigation.NavigateTo("/tickets"); // Przekierowanie do strony z listą zgłoszeń
+	}
+
+	// Metoda do pobierania załącznika
+
+}

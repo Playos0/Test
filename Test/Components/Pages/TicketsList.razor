@@ -43,6 +43,9 @@
 						<button class="btn btn-success" @onclick='() => ChangeStatus(ticket,"Zakończone")'>Zakończone</button>
 						<button class="btn btn-danger" @onclick='() => AskDeleteTicket(ticket)'>Usuń</button>
 					</td>
+					<td>
+						<a class="btn btn-info" href="@($"/ticket/{ticket.Id}")">Szczegóły</a> <!-- Link do szczegółów zgłoszenia -->
+					</td>
 				</tr>
 			}
 		</tbody>

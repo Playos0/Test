@@ -68,6 +68,10 @@ public static class TicketService
         }
     }
 
+    public static Ticket? GetTicketById(int id)
+    {
+        return tickets.FirstOrDefault(t => t.Id == id); // Znajdowanie zgłoszenia po ID
+    }
 
 
 }
