@@ -11,6 +11,7 @@ public class Ticket
     [Required(ErrorMessage = "Opis jest wymagany!")]
     public string Description { get; set; } = string.Empty;
     public string Status { get; set; } = "Nowe";
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     // Lista załączników do zgłoszenia
     public List<Attachment> Attachments { get; set; } = new();

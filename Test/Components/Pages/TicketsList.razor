@@ -13,6 +13,7 @@
 				<th>Nazwa urządzenia</th>
 				<th>Opis zgłoszenia</th>
 				<th>Status</th>
+				<th>Data dodania</th>	
 			</tr>
 		</thead>
 		<tbody>
@@ -23,6 +24,7 @@
 					<td>@ticket.Device</td>
 					<td>@ticket.Description</td>
 					<td>@ticket.Status</td>
+					<td>@ticket.CreatedAt</td>
 					<td>
 						<!-- Możliwość dodania przycisku do edycji lub usunięcia zgłoszenia -->
 						<button class="btn btn-primary" @onclick='() => ChangeStatus(ticket,"W trakcie")'>W trakcie</button>
