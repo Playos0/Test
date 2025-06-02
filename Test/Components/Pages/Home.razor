@@ -1,5 +1,84 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager;
 
-<h1>Hello, world!</h1>
+<h1>Witaj w Rejestrze Serwisowym</h1>
 
-Welcome to your new app.
+<div class="summary-cards">
+	<div class="card nowe">
+		<h2>@newCount</h2>
+		<p>Nowe zgłoszenia</p>
+	</div>
+	<div class="card w_trakcie">
+		<h2>@inProgressCount</h2>
+		<p>W trakcie realizacji</p>
+	</div>
+	<div class="card zakonczone">
+		<h2>@doneCount</h2>
+		<p>Zakończone</p>
+	</div>
+</div>
+
+<h3>Najnowsze zgłoszenia</h3>
+
+@if (latestTickets.Any())
+{
+	<table class="ticket-table">
+		<thead>
+			<tr>
+				<th>Imie klienta</th>
+				<th>Urządzenie</th>
+				<th>Opis</th>
+				<th>Status</th>
+				<th>Data</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var ticket in latestTickets)
+			{
+				<tr>
+					<td>@ticket.ClientName</td>
+					<td>@ticket.Device</td>
+					<td>@ticket.Description</td>
+					<td>@ticket.Status</td>
+					<td>@ticket.CreatedAt.ToString("dd-MM-yyyy")</td>
+					<button @onclick="() => showTicketDetails(ticket.Id)">Szczegóły</button>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<p>Brak zgłoszeń.</p>
+}
+<div class="acction">
+	<button class="btn btn-primary" @onclick="addTicket">Dodaj nowe zgłoszenie</button>
+	<button class="btn btn-secondary" @onclick="goToTickets">Lista zgłoszeń</button>
+</div>
+@code{
+	private int newCount;
+	private int inProgressCount;
+	private int doneCount;
+	private List<Ticket> latestTickets = new List<Ticket>();
+
+	protected override void OnInitialized()
+	{
+		var tickets = TicketService.GetTickets(); 
+		newCount = tickets.Count(t => t.Status == "Nowe");
+		inProgressCount = tickets.Count(t => t.Status == "W trakcie realizacji");
+		doneCount = tickets.Count(t => t.Status == "Zakończone");
+		latestTickets = tickets.OrderByDescending(t => t.CreatedAt).Take(5).ToList();
+	}
+	void addTicket()
+	{
+		NavigationManager.NavigateTo("/add");
+	}
+	void goToTickets()
+	{
+		NavigationManager.NavigateTo("/Tickets");
+	}
+	void showTicketDetails(int id)
+	{
+		NavigationManager.NavigateTo($"/ticketDetails/{id}");
+	}
+}
