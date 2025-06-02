@@ -42,7 +42,7 @@ else
 	</div>
 }
 @code {
-
+	 
 	[Parameter] public int TicketId { get; set; } // Id zgłoszenia przekazywane z URL
 	private Ticket? ticket; // Zgłoszenie serwisowe
 
@@ -56,13 +56,9 @@ else
 	{
 		try
 		{
-			string folderPath = FileSystem.AppDataDirectory; // Ścieżka do folderu
-			string filePath = Path.Combine(folderPath, attachment.FileName); // Ścieżka do pliku
+			//string fileSaver = new FileSaver(); // Inicjalizacja FileSaver do zapisu pliku
+			//string result = await fileSaver.SaveAsync(attachment.FileName, attachment.Data); // Zapisujemy plik
 
-			await File.WriteAllBytesAsync(filePath, attachment.Data); // Zapisujemy dane pliku do systemu plików
-
-			await Application.Current.MainPage.DisplayAlert("Zapisano plik", $"Plik zapisano w: \n{filePath}", "OK");
-			// Wyświetlamy komunikat o pomyślnym zapisaniu pliku
 		}
 		catch (Exception ex) // Obsługa błędu
 		{
