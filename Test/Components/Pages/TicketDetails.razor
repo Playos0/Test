@@ -42,7 +42,7 @@ else
 	</div>
 }
 @code {
-	 
+
 	[Parameter] public int TicketId { get; set; } // Id zgłoszenia przekazywane z URL
 	private Ticket? ticket; // Zgłoszenie serwisowe
 
@@ -56,8 +56,17 @@ else
 	{
 		try
 		{
-			//string fileSaver = new FileSaver(); // Inicjalizacja FileSaver do zapisu pliku
-			//string result = await fileSaver.SaveAsync(attachment.FileName, attachment.Data); // Zapisujemy plik
+			using var stream = new MemoryStream(attachment.Data); // Tworzenie strumienia z danych załącznika
+			var result = await FileSaver.SaveAsync(attachment.FileName, stream); // Wywołanie metody do zapisu pliku
+
+			if(result.IsSuccessful) // Sprawdzenie, czy zapis pliku powiódł się
+			{
+				await Application.Current.MainPage.DisplayAlert("Sukces", "Plik został pobrany pomyślnie.", "OK");
+			}
+			else // Obsługa błędu zapisu pliku
+			{
+				await Application.Current.MainPage.DisplayAlert("Błąd", "Nie udało się pobrać pliku.", "OK");
+			}
 
 		}
 		catch (Exception ex) // Obsługa błędu
