@@ -19,6 +19,8 @@ public static class TicketService
     // Metoda do dodawania zgłoszenia
     public static void AddTicket(Ticket ticket)
     {
+        //nadaje unikalne ID dla zgłoszenia
+        ticket.Id = tickets.Count > 0 ? tickets.Max(t => t.Id) + 1 : 1; // Ustawia ID na podstawie maksymalnego ID w liście lub 1, jeśli lista jest pusta
         tickets.Add(ticket);
         SaveTicketsToFile(); // Zapisanie zgłoszeń do pliku po dodaniu nowego zgłoszenia
     }
@@ -68,7 +70,7 @@ public static class TicketService
         }
     }
 
-    public static Ticket? GetTicketById(int id)
+    public static Ticket? GetTicketById(int id) // Metoda do znajdowania zgłoszenia po ID
     {
         return tickets.FirstOrDefault(t => t.Id == id); // Znajdowanie zgłoszenia po ID
     }
