@@ -1,0 +1,71 @@
+:root {
+    --background-color: #121212;
+    --text-color: #E0E0E0;
+    --primary-color: #FF5722; /*pomarañczowy*/
+    --secondary-color: #4CAF50; /*zielony*/
+    --button-bg: var(--primary-color);
+    --button-hover-bg: #E34210;
+    --card-bg: #1E1E1E;
+    --border-color: #333333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/*przyciski*/
+
+.btn-primary {
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover{
+    background-color: var(--button-hover-bg);
+}
+
+/*karty*/
+.ticket-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/*linki*/
+.nav-link {
+    color: var(--text-color);
+}
+
+.nav-link:active {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/*Formularze*/
+input, textarea {
+    background-color: #2A2A2A;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+input:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}

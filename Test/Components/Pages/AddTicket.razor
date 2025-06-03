@@ -1,5 +1,6 @@
 @page "/add"
 
+<div class="container">
 <h3>Dodaj zg³oszenie serwisowe</h3>
 <!-- Formularz -->
 <EditForm Model="@ticket" OnValidSubmit="HandleValidSubmit">
@@ -21,7 +22,7 @@
 		<label>Plik do dodania: </label> <br />
 		<InputFile OnChange="OnInputFileChange" multiple />
 	</div>
-	<button type="submit">Dodaj zg³oszenie</button>
+	<button class="btn btn-primary" type="submit">Dodaj zg³oszenie</button>
 
 </EditForm>
 
@@ -31,7 +32,7 @@
 		Zg³oszenie zosta³o dodane pomyœlnie!
 	</div>
 }
-
+</div>
 @code{
 
 	private Ticket ticket = new Ticket();

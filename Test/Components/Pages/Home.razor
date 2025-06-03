@@ -1,18 +1,19 @@
 ﻿@page "/"
 @inject NavigationManager NavigationManager;
 
-<h1>Witaj w Rejestrze Serwisowym</h1>
+<div class="container">
+<h1 style="text-align: center">Witaj w Rejestrze Serwisowym</h1>
 
 <div class="summary-cards">
-	<div class="card nowe">
+		<div class="ticket-card nowe">
 		<h2>@newCount</h2>
 		<p>Nowe zgłoszenia</p>
 	</div>
-	<div class="card w_trakcie">
+		<div class="ticket-card w_trakcie">
 		<h2>@inProgressCount</h2>
 		<p>W trakcie realizacji</p>
 	</div>
-	<div class="card zakonczone">
+		<div class="ticket-card zakonczone">
 		<h2>@doneCount</h2>
 		<p>Zakończone</p>
 	</div>
@@ -41,7 +42,7 @@
 					<td>@ticket.Description</td>
 					<td>@ticket.Status</td>
 					<td>@ticket.CreatedAt.ToString("dd-MM-yyyy")</td>
-					<button @onclick="() => showTicketDetails(ticket.Id)">Szczegóły</button>
+					<button class="btn btn-primary" @onclick="() => showTicketDetails(ticket.Id)">Szczegóły</button>
 				</tr>
 			}
 		</tbody>
@@ -53,7 +54,8 @@ else
 }
 <div class="acction">
 	<button class="btn btn-primary" @onclick="addTicket">Dodaj nowe zgłoszenie</button>
-	<button class="btn btn-secondary" @onclick="goToTickets">Lista zgłoszeń</button>
+	<button class="btn btn-primary" @onclick="goToTickets">Lista zgłoszeń</button>
+</div>
 </div>
 @code{
 	private int newCount;

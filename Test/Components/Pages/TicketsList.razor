@@ -1,6 +1,7 @@
 ﻿@page "/Tickets"
 <ConfirmWindow @ref="confirmWindow" Message="Czy na pewno chcesz usunąć to zgłoszenie?" OnConfirm="OnConfirm" />
 
+<div class="container">
 <h3>Zgłoszenia serwisowe</h3>
 
 <!-- Lista zgłoszeń serwisowych -->
@@ -25,7 +26,7 @@
 				<option value="createdAt">Data dodania</option>
 				<option value="status">Status</option>
 			</select>
-			<button @onclick = "ToggleSortDirection">
+			<button class="btn btn-primary" @onclick = "ToggleSortDirection">
 				@(ascending ? "⬆️ Rosnąco" : "⬇️ Malejąco")
 			</button>
 
@@ -55,7 +56,7 @@ else
 {
 	<p>Brak zgłoszeń serwisowych.</p>
 }
-
+</div>
 @code {
 	private List<Ticket> tickets = new List<Ticket>(); // Lista zgłoszeń serwisowych
 	protected override void OnInitialized() // Metoda wywoływana podczas inicjalizacji

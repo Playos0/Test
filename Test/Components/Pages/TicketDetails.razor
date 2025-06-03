@@ -1,6 +1,7 @@
 ﻿@page "/ticketDetails/{TicketId:int}"
 @inject NavigationManager Navigation 
 
+<div class="container">
 <h3>Szczegóły zgłoszenia</h3>
 
 @if (ticket == null)
@@ -25,7 +26,7 @@ else
 				{
 					<li>
 						@attachment.FileName
-						<button class="btn btn-link" @onclick="() => DownloadAttachment(attachment)">
+						<button class="btn btn-primary" @onclick="() => DownloadAttachment(attachment)">
 							Pobierz
 						</button>
 					</li>
@@ -38,9 +39,10 @@ else
 		}
 	
 
-		<button class="btn btn-secondary" @onclick="GoBack">Wróć do listy zgłoszeń</button>
+		<button class="btn btn-primary" @onclick="GoBack">Wróć do listy zgłoszeń</button>
 	</div>
 }
+</div>
 @code {
 
 	[Parameter] public int TicketId { get; set; } // Id zgłoszenia przekazywane z URL
