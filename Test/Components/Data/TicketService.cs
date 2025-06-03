@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic.FileIO;
+using System.Linq;
 
 
 //klasa obsługi zgłoszeń
@@ -68,6 +69,18 @@ public static class TicketService
         {
             tickets = new List<Ticket>(); // Jeśli plik nie istnieje, inicjalizujemy pustą listę zgłoszeń
         }
+    }
+
+    //Metoda do Zmiany statusu zgłoszenia
+    public static void ChangeStatus(Ticket ticket, string newStatus)
+    {
+        var existingTicket = tickets.FirstOrDefault(t => t.Id == ticket.Id); // Znajdujemy istniejące zgłoszenie po ID
+        if (existingTicket != null) // Sprawdzamy, czy zgłoszenie istnieje
+        {
+            existingTicket.Status = newStatus; // Zmieniamy status zgłoszenia
+            SaveTicketsToFile(); // Zapisujemy zmiany do pliku
+        }
+
     }
 
     public static Ticket? GetTicketById(int id) // Metoda do znajdowania zgłoszenia po ID
