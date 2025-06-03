@@ -65,7 +65,7 @@ else
 	{
 		var tickets = TicketService.GetTickets(); 
 		newCount = tickets.Count(t => t.Status == "Nowe");
-		inProgressCount = tickets.Count(t => t.Status == "W trakcie realizacji");
+		inProgressCount = tickets.Count(t => t.Status == "W trakcie");
 		doneCount = tickets.Count(t => t.Status == "Zakończone");
 		latestTickets = tickets.OrderByDescending(t => t.CreatedAt).Take(5).ToList();
 	}
