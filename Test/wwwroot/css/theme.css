@@ -114,9 +114,12 @@ input:focus, textarea:focus {
 }
 
 /*tabele*/ /*sekcja home.razor*/
-.ticket-table{
-    width:100%;
+.ticket-table {
+    width: 100%;
     border-collapse: collapse;
+    transform: scale(1); 
+    transform-origin: top left; 
+    transition: transform 0.3s ease-in-out;
 }
 .ticket-table td {
     /*  border: 1px solid var(--border-color); */
@@ -133,10 +136,52 @@ input:focus, textarea:focus {
     height: 70%;
     padding: 10px;
 }
+
 .acction {
-    margin-top: 10px;
+    margin-top: 0;
     width: 100%;
+    transform: scale(1);
+    transform-origin: top left;
+    transition: transform 0.3s ease-in-out;
 }
-.acction button{
-    margin-right: 30px;
+
+.acction button {
+    margin-right: 2rem;
 }
+
+@media (max-width: 880px) {
+    .ticket-table {
+        transform: scale(0.9); /* Zmniejsza tabelê o 20% */
+        transform-origin: top left; /* Zapewnia skalowanie od lewego górnego rogu */
+    }
+    .acction {
+        transform: scale(0.9); /* Zmniejsza tabelê o 20% */
+        transform-origin: top left;
+    }
+}
+
+
+@media (max-width: 780px) {
+    .ticket-table {
+        transform: scale(0.7); /* Zmniejsza tabelê o 20% */
+        transform-origin: top left; /* Zapewnia skalowanie od lewego górnego rogu */
+    }
+    .acction {
+        transform: scale(0.7); /* Zmniejsza tabelê o 20% */
+        transform-origin: top left;
+    }
+}
+
+@media (max-width: 640px) {
+    .ticket-table {
+        transform: scale(0.8); /* Zmniejsza tabelê o 20% */
+        transform-origin: top left; /* Zapewnia skalowanie od lewego górnego rogu */
+    }
+    .acction {
+        transform: scale(0.8); /* Zmniejsza tabelê o 20% */
+        transform-origin: top left;
+    }
+}
+
+
+
