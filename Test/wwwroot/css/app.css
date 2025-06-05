@@ -1,6 +1,16 @@
 ﻿/*#if (SampleContent)*/
+:root {
+    --background-color: #1e1e2f;
+    --sidebar-color: #2c2c3c;
+    --text-color: #f5f5f5;
+    --accent-color: #4f8cff;
+    --hover-color: #3a3a4d;
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 a, .btn-link {

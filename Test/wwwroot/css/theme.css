@@ -64,11 +64,40 @@ body {
 /*linki*/
 .nav-link {
     color: var(--text-color);
+    padding: 10px 15px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.2s;
 }
 
-.nav-link:active {
+.nav-link:active, .nav-link:hover {
     font-weight: bold;
     color: var(--primary-color);
+}
+
+.nav_sidebar_dark {
+    background-color: var(--sidebar-color);
+    height: 100vh;
+    width: auto;
+    padding-top: 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ffffff !important;
+    padding-left: 0.5rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-brand:hover {
+    color: #00bcd4 !important;
+}
+
+.top-row.navbar { /* kolor t³a nazwy aplikacji*/
+    background: #1E1E2F; 
+    border-bottom: 1px solid #333;
 }
 
 /*Formularze*/
