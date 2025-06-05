@@ -112,3 +112,31 @@ input:focus, textarea:focus {
     border-color: var(--primary-color);
     outline: none;
 }
+
+/*tabele*/ /*sekcja home.razor*/
+.ticket-table{
+    width:100%;
+    border-collapse: collapse;
+}
+.ticket-table td {
+    /*  border: 1px solid var(--border-color); */
+    padding: 15px;
+}
+.ticket-table th {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.5rem;
+    text-align: left;
+}
+.ticket-table button{
+    margin-left: 30px;
+    height: 70%;
+    padding: 10px;
+}
+.acction {
+    margin-top: 10px;
+    width: 100%;
+}
+.acction button{
+    margin-right: 30px;
+}
