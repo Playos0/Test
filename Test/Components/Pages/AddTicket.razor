@@ -1,6 +1,6 @@
 @page "/add"
 
-<div class="container">
+<div class="container add-ticket-container">
 <h3>Dodaj zg³oszenie serwisowe</h3>
 <!-- Formularz -->
 <div class="editForm">
@@ -16,7 +16,7 @@
 		<InputText @bind-Value="ticket.Device" />
 	</div>
 	<div>
-		<label>Opis zg³oszenia:  </label> <br />
+		<label>Krótki opis:  </label> <br />
 		<InputTextArea @bind-Value="ticket.Description" />
 	</div>
 	<div>

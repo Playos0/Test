@@ -184,10 +184,96 @@ input:focus, textarea:focus {
 }
 /* Strefa pliku addTicket.razor */
 
-.editForm{
-    background-color: red;
-    margin:auto;
+.editForm {
+    margin: auto;
+    width: 80%;
+}
+.add-ticket-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top:auto;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.5);
+    font-weight:bold;
+}
+.add-ticket-container label, button{
+    margin-top:20px;
+}
+    .add-ticket-container h3 {
+        width: 80%;
+        margin: auto;
+    }
+
+/* Strefa pliku TicketList.razor */
+
+.container-ticket-list {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    width: 100%;
+    color: var(--text-color);
+    /* do responsywnoœci */
+    transform: scale(1);
+    transform-origin: top left;
+    transition: transform 0.3s ease-in-out;
+}
+.list-table {
+    width:100%;
+    border-collapse: collapse;
+    transform: scale(1);
+    transform-origin: top left;
+    transition: transform 0.3s ease-in-out;
+}
+    .list-table td {
+        border-bottom: 2px solid var(--border-color);
+        border-top: 2px solid var(--border-color);
+        width:20%;
+        margin-left:5px;
+    }
+    .list-table select {
+        background-color: #1e1e1e;
+        color: #ffffff;
+        border: 1px solid #444;
+        border-radius: 5px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    .list-table button {
+        width:95%;
+        margin-bottom: 10px;
+    }
+
+@media (max-width: 1000px) {
+    .container-ticket-list {
+        transform: scale(0.9);
+        transform-origin: top left;
+    }
 }
 
+
+@media (max-width: 880px) {
+    .container-ticket-list {
+        transform: scale(0.7);
+        transform-origin: top left;
+    }
+}
+
+@media (max-width: 640px) {
+    .container-ticket-list {
+        transform: scale(1);
+        transform-origin: top left;
+    }
+    .list-table{
+        transform:scale(0.7);
+        transform-origin:top left;
+    }
+}
 
 

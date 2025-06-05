@@ -1,13 +1,13 @@
 ﻿@page "/Tickets"
 <ConfirmWindow @ref="confirmWindow" Message="Czy na pewno chcesz usunąć to zgłoszenie?" OnConfirm="OnConfirm" />
 
-<div class="container">
+<div class="container container-ticket-list">
 <h3>Zgłoszenia serwisowe</h3>
 
 <!-- Lista zgłoszeń serwisowych -->
 @if (tickets != null && tickets.Any())
 {
-	<table class="table">
+		<table class="list-table">
 		<thead>
 			<tr>
 				<th>Imię klienta</th>
@@ -19,6 +19,8 @@
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+			<td>
 			<label>Sortuj według:</label>
 			<select @onchange = "SortChanged">
 				<option value="client">Imię klienta</option>
@@ -26,10 +28,13 @@
 				<option value="createdAt">Data dodania</option>
 				<option value="status">Status</option>
 			</select>
+			</td>
+			<td>
 			<button class="btn btn-primary" @onclick = "ToggleSortDirection">
 				@(ascending ? "⬆️ Rosnąco" : "⬇️ Malejąco")
 			</button>
-
+			</td>
+			</tr>
 			@foreach (var ticket in tickets)
 			{
 				<tr>
