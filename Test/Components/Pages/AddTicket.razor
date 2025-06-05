@@ -3,6 +3,7 @@
 <div class="container">
 <h3>Dodaj zg³oszenie serwisowe</h3>
 <!-- Formularz -->
+<div class="editForm">
 <EditForm Model="@ticket" OnValidSubmit="HandleValidSubmit">
 	<DataAnnotationsValidator />
 	<ValidationSummary />
@@ -25,7 +26,7 @@
 	<button class="btn btn-primary" type="submit">Dodaj zg³oszenie</button>
 
 </EditForm>
-
+	</div>
 @if (isSubmitted)
 {
 	<div class="alert alert-success mt-3">
